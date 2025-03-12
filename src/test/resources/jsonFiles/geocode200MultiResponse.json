@@ -1,0 +1,101 @@
+{
+  "items": [
+    {
+      "title": "95630, Folsom, CA, United States",
+      "id": "here:cm:namedplace:22074221",
+      "resultType": "locality",
+      "localityType": "postalCode",
+      "address": {
+        "label": "95630, Folsom, CA, United States",
+        "countryCode": "USA",
+        "countryName": "United States",
+        "stateCode": "CA",
+        "state": "California",
+        "county": "Sacramento",
+        "city": "Folsom",
+        "postalCode": "95630"
+      },
+      "position": {
+        "lat": 38.68175,
+        "lng": -121.16283
+      },
+      "mapView": {
+        "west": -121.21331,
+        "south": 38.58319,
+        "east": -121.06611,
+        "north": 38.71729
+      },
+      "scoring": {
+        "queryScore": 1,
+        "fieldScore": {
+          "postalCode": 1
+        }
+      }
+    },
+    {
+      "title": "95630, Mériel, Île-de-France, France",
+      "id": "here:cm:namedplace:22076475",
+      "resultType": "locality",
+      "localityType": "postalCode",
+      "address": {
+        "label": "95630, Mériel, Île-de-France, France",
+        "countryCode": "FRA",
+        "countryName": "France",
+        "stateCode": "IDF",
+        "state": "Île-de-France",
+        "county": "Val-d'Oise",
+        "city": "Mériel",
+        "postalCode": "95630"
+      },
+      "position": {
+        "lat": 49.08056,
+        "lng": 2.20655
+      },
+      "mapView": {
+        "west": 2.18916,
+        "south": 49.06524,
+        "east": 2.23595,
+        "north": 49.08944
+      },
+      "scoring": {
+        "queryScore": 1,
+        "fieldScore": {
+          "postalCode": 1
+        }
+      }
+    },
+    {
+      "title": "95630, Kuivakangas, Ylitornio, Lappi, Suomi",
+      "id": "here:cm:namedplace:22259162",
+      "resultType": "locality",
+      "localityType": "postalCode",
+      "address": {
+        "label": "95630, Kuivakangas, Ylitornio, Lappi, Suomi",
+        "countryCode": "FIN",
+        "countryName": "Suomi",
+        "stateCode": "LL",
+        "state": "Lappi",
+        "county": "Lappi",
+        "city": "Ylitornio",
+        "district": "Kuivakangas",
+        "postalCode": "95630"
+      },
+      "position": {
+        "lat": 66.42477,
+        "lng": 23.66346
+      },
+      "mapView": {
+        "west": 23.64175,
+        "south": 66.39857,
+        "east": 23.7957,
+        "north": 66.441
+      },
+      "scoring": {
+        "queryScore": 1,
+        "fieldScore": {
+          "postalCode": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "title": "Folsom, CA, United States",
+      "id": "here:cm:namedplace:21010095",
+      "resultType": "locality",
+      "localityType": "city",
+      "address": {
+        "label": "Folsom, CA, United States",
+        "countryCode": "USA",
+        "countryName": "United States",
+        "stateCode": "CA",
+        "state": "California",
+        "county": "Sacramento",
+        "city": "Folsom",
+        "postalCode": "95630"
+      },
+      "position": {
+        "lat": 38.68175,
+        "lng": -121.16283
+      },
+      "mapView": {
+        "west": -121.21331,
+        "south": 38.61456,
+        "east": -121.07939,
+        "north": 38.71729
+      },
+      "scoring": {
+        "queryScore": 1,
+        "fieldScore": {
+          "state": 1,
+          "city": 1
+        }
+      }
+    }
+  ]
+}

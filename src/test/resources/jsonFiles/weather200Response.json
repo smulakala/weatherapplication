@@ -1,0 +1,66 @@
+{
+  "observations": {
+    "location": [
+      {
+        "observation": [
+          {
+            "daylight": "N",
+            "description": "Clear. Cool.",
+            "skyInfo": "2",
+            "skyDescription": "Clear",
+            "temperature": "8.00",
+            "temperatureDesc": "Cool",
+            "comfort": "7.30",
+            "highTemperature": "21.30",
+            "lowTemperature": "4.30",
+            "humidity": "76",
+            "dewPoint": "4.00",
+            "precipitation1H": "*",
+            "precipitation3H": "*",
+            "precipitation6H": "*",
+            "precipitation12H": "*",
+            "precipitation24H": "*",
+            "precipitationProbability": "0",
+            "precipitationDesc": "",
+            "rainFall": "*",
+            "snowFall": "*",
+            "airInfo": "*",
+            "airDescription": "",
+            "windSpeed": "5.56",
+            "windDirection": "120",
+            "windDesc": "Southeast",
+            "windDescShort": "SE",
+            "uvIndex": "0",
+            "uvDesc": "Minimal",
+            "barometerPressure": "1009.82",
+            "barometerTrend": "Steady",
+            "visibility": "16.09",
+            "snowCover": "*",
+            "icon": "13",
+            "iconName": "night_clear",
+            "iconLink": "https://weather.cc.api.here.com/static/weather/icon/16.png",
+            "ageMinutes": "26",
+            "activeAlerts": "0",
+            "country": "United States",
+            "state": "California",
+            "city": "Folsom",
+            "latitude": 38.678,
+            "longitude": -121.1761,
+            "distance": 17.25,
+            "elevation": 67,
+            "utcTime": "2025-03-10T23:50:00.000-07:00"
+          }
+        ],
+        "country": "United States",
+        "state": "California",
+        "city": "Folsom",
+        "latitude": 38.67796,
+        "longitude": -121.17606,
+        "distance": 0,
+        "timezone": -8
+      }
+    ]
+  },
+  "feedCreation": "2025-03-11T07:16:14.607Z",
+  "metric": true
+}

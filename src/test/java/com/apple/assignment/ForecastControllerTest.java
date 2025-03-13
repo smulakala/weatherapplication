@@ -70,10 +70,11 @@ public class ForecastControllerTest {
         DownstreamResponses responses = DownstreamResponses.builder()
                 .geoCodeRespose(getSuccessResponse("geocode200SingleResponse.json"))
                 .weatherRespose(getSuccessResponse("weather200Response.json"))
+                .forecastRespose(getSuccessResponse("forecast200Response.json"))
                 .build();
         mockWebServer.setDispatcher(setupResponses(responses));
 
-        String expoectedResponse = "[{\"title\":\"Folsom, California, United States\",\"highTemperature\":\"21.30\",\"lowTemperature\":\"4.30\",\"iconDescription\":\"Cool\",\"iconUrl\":\"https://weather.cc.api.here.com/static/weather/icon/16.png\",\"message\":null}]";
+        String expoectedResponse = "{\"title\":\"Folsom, California, United States\",\"currentTemperature\":\"8.00\",\"highTemperature\":\"21.30\",\"lowTemperature\":\"4.30\",\"iconDescription\":\"Clear\",\"iconUrl\":\"https://weather.cc.api.here.com/static/weather/icon/16.png\",\"message\":null,\"cached\":\"false\",\"forecasts\":[{\"highTemperature\":\"8.50\",\"lowTemperature\":\"1.60\",\"skyDescription\":\"Overcast\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/17.png\",\"weekday\":\"Thursday\"},{\"highTemperature\":\"8.20\",\"lowTemperature\":\"0.90\",\"skyDescription\":\"Overcast\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/19.png\",\"weekday\":\"Friday\"},{\"highTemperature\":\"7.50\",\"lowTemperature\":\"-1.00\",\"skyDescription\":\"Morning clouds\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/27.png\",\"weekday\":\"Saturday\"},{\"highTemperature\":\"9.10\",\"lowTemperature\":\"-4.00\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Sunday\"},{\"highTemperature\":\"7.70\",\"lowTemperature\":\"-1.10\",\"skyDescription\":\"Mostly sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/2.png\",\"weekday\":\"Monday\"},{\"highTemperature\":\"8.40\",\"lowTemperature\":\"-3.80\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Tuesday\"},{\"highTemperature\":\"10.50\",\"lowTemperature\":\"-1.20\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Wednesday\"}]}";
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/forecast/api")
@@ -83,9 +84,11 @@ public class ForecastControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.content().json(expoectedResponse));
 
-        RecordedRequest recordedRequest = mockWebServer.takeRequest();
+        RecordedRequest weatherRequest = mockWebServer.takeRequest();
+        RecordedRequest forecastRequest = mockWebServer.takeRequest();
 
-        Assertions.assertEquals("/weather/1.0/report.json?product=observation&apiKey=testkey&metric=true&oneobservation=true&zipcode=95630",recordedRequest.getPath());
+        Assertions.assertEquals("/weather/1.0/report.json?product=observation&apiKey=testkey&metric=true&oneobservation=true&zipcode=95630",weatherRequest.getPath());
+        Assertions.assertEquals("/weather/1.0/report.json?apiKey=testkey&metric=true&oneobservation=true&product=forecast_7days_simple&name=Folsom,%20California,%20United%20States",forecastRequest.getPath());
     }
 
     @Test
@@ -97,10 +100,11 @@ public class ForecastControllerTest {
         DownstreamResponses responses = DownstreamResponses.builder()
                 .geoCodeRespose(getSuccessResponse("geocode200SingleResponse.json"))
                 .weatherRespose(getSuccessResponse("weather200Response.json"))
+                .forecastRespose(getSuccessResponse("forecast200Response.json"))
                 .build();
         mockWebServer.setDispatcher(setupResponses(responses));
 
-        String expoectedResponse = "[{\"title\":\"Folsom, California, United States\",\"highTemperature\":\"21.30\",\"lowTemperature\":\"4.30\",\"iconDescription\":\"Cool\",\"iconUrl\":\"https://weather.cc.api.here.com/static/weather/icon/16.png\",\"message\":null}]";
+        String expoectedResponse = "{\"title\":\"Folsom, California, United States\",\"currentTemperature\":\"8.00\",\"highTemperature\":\"21.30\",\"lowTemperature\":\"4.30\",\"iconDescription\":\"Clear\",\"iconUrl\":\"https://weather.cc.api.here.com/static/weather/icon/16.png\",\"message\":null,\"cached\":\"false\",\"forecasts\":[{\"highTemperature\":\"8.50\",\"lowTemperature\":\"1.60\",\"skyDescription\":\"Overcast\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/17.png\",\"weekday\":\"Thursday\"},{\"highTemperature\":\"8.20\",\"lowTemperature\":\"0.90\",\"skyDescription\":\"Overcast\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/19.png\",\"weekday\":\"Friday\"},{\"highTemperature\":\"7.50\",\"lowTemperature\":\"-1.00\",\"skyDescription\":\"Morning clouds\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/27.png\",\"weekday\":\"Saturday\"},{\"highTemperature\":\"9.10\",\"lowTemperature\":\"-4.00\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Sunday\"},{\"highTemperature\":\"7.70\",\"lowTemperature\":\"-1.10\",\"skyDescription\":\"Mostly sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/2.png\",\"weekday\":\"Monday\"},{\"highTemperature\":\"8.40\",\"lowTemperature\":\"-3.80\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Tuesday\"},{\"highTemperature\":\"10.50\",\"lowTemperature\":\"-1.20\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Wednesday\"}]}";
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/forecast/api")
@@ -110,9 +114,11 @@ public class ForecastControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.content().json(expoectedResponse));
 
-        RecordedRequest recordedRequest = mockWebServer.takeRequest();
+        RecordedRequest weatherRequest = mockWebServer.takeRequest();
+        RecordedRequest forecastRequest = mockWebServer.takeRequest();
 
-        Assertions.assertEquals("/weather/1.0/report.json?product=observation&apiKey=testkey&metric=true&oneobservation=true&name=folsom,ca",recordedRequest.getPath());
+        Assertions.assertEquals("/weather/1.0/report.json?product=observation&apiKey=testkey&metric=true&oneobservation=true&name=folsom,ca",weatherRequest.getPath());
+        Assertions.assertEquals("/weather/1.0/report.json?apiKey=testkey&metric=true&oneobservation=true&product=forecast_7days_simple&name=Folsom,%20California,%20United%20States",forecastRequest.getPath());
     }
 
     @Test
@@ -124,10 +130,11 @@ public class ForecastControllerTest {
         DownstreamResponses responses = DownstreamResponses.builder()
                 .geoCodeRespose(getSuccessResponse("geocode200SingleResponse.json"))
                 .weatherRespose(getSuccessResponse("weather200Response.json"))
+                .forecastRespose(getSuccessResponse("forecast200Response.json"))
                 .build();
         mockWebServer.setDispatcher(setupResponses(responses));
 
-        String expoectedResponse = "[{\"title\":\"Folsom, CA, United States\",\"highTemperature\":\"21.30\",\"lowTemperature\":\"4.30\",\"iconDescription\":\"Cool\",\"iconUrl\":\"https://weather.cc.api.here.com/static/weather/icon/16.png\",\"message\":null}]";
+        String expoectedResponse = "{\"title\":\"Folsom, CA, United States\",\"currentTemperature\":\"8.00\",\"highTemperature\":\"21.30\",\"lowTemperature\":\"4.30\",\"iconDescription\":\"Clear\",\"iconUrl\":\"https://weather.cc.api.here.com/static/weather/icon/16.png\",\"message\":null,\"cached\":\"false\",\"forecasts\":[{\"highTemperature\":\"8.50\",\"lowTemperature\":\"1.60\",\"skyDescription\":\"Overcast\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/17.png\",\"weekday\":\"Thursday\"},{\"highTemperature\":\"8.20\",\"lowTemperature\":\"0.90\",\"skyDescription\":\"Overcast\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/19.png\",\"weekday\":\"Friday\"},{\"highTemperature\":\"7.50\",\"lowTemperature\":\"-1.00\",\"skyDescription\":\"Morning clouds\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/27.png\",\"weekday\":\"Saturday\"},{\"highTemperature\":\"9.10\",\"lowTemperature\":\"-4.00\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Sunday\"},{\"highTemperature\":\"7.70\",\"lowTemperature\":\"-1.10\",\"skyDescription\":\"Mostly sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/2.png\",\"weekday\":\"Monday\"},{\"highTemperature\":\"8.40\",\"lowTemperature\":\"-3.80\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Tuesday\"},{\"highTemperature\":\"10.50\",\"lowTemperature\":\"-1.20\",\"skyDescription\":\"Sunny\",\"iconLink\":\"https://weather.cc.api.here.com/static/weather/icon/1.png\",\"weekday\":\"Wednesday\"}]}";
 
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/forecast/api")
@@ -137,11 +144,13 @@ public class ForecastControllerTest {
                 .andExpect(MockMvcResultMatchers.content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.content().json(expoectedResponse));
 
-        RecordedRequest recordedRequest1 = mockWebServer.takeRequest();
-        RecordedRequest recordedRequest2 = mockWebServer.takeRequest();
+        RecordedRequest geocodeRequest = mockWebServer.takeRequest();
+        RecordedRequest weatherRequest = mockWebServer.takeRequest();
+        RecordedRequest forecastRequest = mockWebServer.takeRequest();
 
-        Assertions.assertEquals("/v1/geocode?q=214%20Colner%20cir,%20folsom,%20ca%2095630&apiKey=testkey",recordedRequest1.getPath());
-        Assertions.assertEquals("/weather/1.0/report.json?product=observation&apiKey=testkey&metric=true&oneobservation=true&latitude=38.68175&longitude=-121.16283",recordedRequest2.getPath());
+        Assertions.assertEquals("/v1/geocode?q=214%20Colner%20cir,%20folsom,%20ca%2095630&apiKey=testkey&limit=1",geocodeRequest.getPath());
+        Assertions.assertEquals("/weather/1.0/report.json?product=observation&apiKey=testkey&metric=true&oneobservation=true&latitude=38.68175&longitude=-121.16283",weatherRequest.getPath());
+        Assertions.assertEquals("/weather/1.0/report.json?apiKey=testkey&metric=true&oneobservation=true&product=forecast_7days_simple&name=Folsom,%20CA,%20United%20States",forecastRequest.getPath());
     }
 
 
@@ -155,7 +164,7 @@ public class ForecastControllerTest {
                     case GEOCODE_PATH:
                         return downstreamResponses.geoCodeRespose;
                     case WEATHER_PATH:
-                        return downstreamResponses.weatherRespose;
+                         return request.getPath().contains("product=observation") ? downstreamResponses.weatherRespose : downstreamResponses.forecastRespose;
                     default:
                         return new MockResponse().setResponseCode(404);
                 }
@@ -167,6 +176,7 @@ public class ForecastControllerTest {
     private static class DownstreamResponses {
         MockResponse geoCodeRespose;
         MockResponse weatherRespose;
+        MockResponse forecastRespose;
     }
 
     private MockResponse getSuccessResponse(String fileName) throws IOException {
